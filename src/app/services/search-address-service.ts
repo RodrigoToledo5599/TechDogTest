@@ -9,7 +9,7 @@ import { delay } from 'rxjs/operators';
 export class SearchAddressService {
   constructor(private http: HttpClient) { }
 
-  getAddress(cep: string): Observable<any> { // tipar esse any para uma resposta adequada
+  getAddress(cep: string): Observable<any> { 
     var result = this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
       .pipe(
         delay(2000)
