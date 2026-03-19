@@ -1,0 +1,134 @@
+#search-address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 24px;
+    border-radius: 16px;
+
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    width: 100%;
+    max-width: 400px;
+
+    .input-zone {
+
+        .input-field {
+            font-weight: 400;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            min-width: 0;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
+
+            &:focus {
+                border-color: #4f46e5;
+                box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+            }
+
+            &::placeholder {
+                color: #aaa;
+            }
+            
+            &.is-invalid {
+                border: 2px solid #ff4d4d;
+                outline: none;
+            }
+        }
+
+
+        .input-error {
+            font-size: 12px;
+            padding-left: 12px;
+            color: red;
+        }
+    }
+
+    .form-row {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 12px;
+
+        border: none;
+        border-radius: 10px;
+
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: white;
+
+        font-weight: 600;
+        font-size: 14px;
+
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    }
+
+    .clear-button {
+        background: transparent;
+        color: #6b7280;
+        border: none;
+        font-size: 13px;
+        cursor: pointer;
+
+        &:hover {
+            color: #ef4444;
+        }
+    }
+
+    .error-msg {
+        font-weight: 500;
+        background-color: #fdecea;
+        color: #b71c1c;
+        border-radius: 12px;
+        font-size: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+}
+
+.skeleton-input {
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(-90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+    background-size: 400% 400%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}

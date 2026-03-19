@@ -1,0 +1,26 @@
+#search-address-page {
+    // padding-top: 12vh;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+
+    .blur-ball {
+        position: absolute;
+        left: 40%;
+        top: 35%;
+        width: 800px;
+        height: 500px;
+        background: #4d8ef7;
+        border-radius: 50%;
+        filter: blur(180px);
+        opacity: 0.2;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+}

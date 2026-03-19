@@ -1,0 +1,92 @@
+<form [formGroup]="adressForm">
+    <div id="search-address-form">
+        <p style="text-align:center; color:#6b7280; font-size:14px;">Preencha abaixo o campo do cep e o formulário se auto completará</p>
+        <div class="input-zone">
+            <input class="input-field" formControlName="cep" placeholder="CEP"  
+                [class.is-invalid]="adressForm.get('cep')?.invalid && adressForm.get('cep')?.touched"
+            />
+            <div class="input-error">
+                @if (adressForm.get('cep')?.invalid && adressForm.get('cep')?.touched) {
+                    @if (adressForm.get('cep')?.hasError('required')) {
+                        <small>Campo obrigatório</small>
+                    }
+                    @if (adressForm.get('cep')?.hasError('minlength') || adressForm.get('cep')?.hasError('maxlength') ) {
+                        <small>O CEP deve ter 8 dígitos.</small>
+                    }
+                }
+            </div>
+        </div>
+        @if(loading() == true){
+            <app-skeleton-input></app-skeleton-input>
+        }@else{
+            <div class="input-zone">
+                <input class="input-field" formControlName="rua" placeholder="Rua"
+                    [class.is-invalid]="adressForm.get('rua')?.invalid && adressForm.get('rua')?.touched"
+                />
+                <div class="input-error">
+                    @if (adressForm.get('rua')?.invalid && adressForm.get('rua')?.touched) {    
+                        <small>Campo obrigatório</small>
+                    }
+                </div>
+            </div>
+
+            <div class="input-zone">
+                <input class="input-field" formControlName="bairro" placeholder="Bairro" 
+                    [class.is-invalid]="adressForm.get('bairro')?.invalid && adressForm.get('bairro')?.touched"
+                />
+                <div class="input-error">
+                    @if (adressForm.get('bairro')?.invalid && adressForm.get('bairro')?.touched) {    
+                        <small>Campo obrigatório</small>
+                    }
+                </div>
+            </div>
+            <div class="input-zone">
+                <input class="input-field" formControlName="cidade" placeholder="Cidade" 
+                    [class.is-invalid]="adressForm.get('cidade')?.invalid && adressForm.get('cidade')?.touched"
+                />
+                <div class="input-error">
+                    @if (adressForm.get('cidade')?.invalid && adressForm.get('cidade')?.touched) {    
+                        <small>Campo obrigatório</small>
+                    }
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-zone">
+                    <input class="input-field" formControlName="estado" placeholder="Estado" 
+                        [class.is-invalid]="adressForm.get('estado')?.invalid && adressForm.get('estado')?.touched"
+                    />
+                    <div class="input-error">
+                        @if (adressForm.get('estado')?.invalid && adressForm.get('estado')?.touched) {    
+                            <small>Campo obrigatório</small>
+                        }
+                    </div>
+                </div>
+                <div class="input-zone">
+                    <input class="input-field" formControlName="ibge" placeholder="Ibge" 
+                        [class.is-invalid]="adressForm.get('ibge')?.invalid && adressForm.get('ibge')?.touched"
+                    />
+                    <div class="input-error">
+                        @if (adressForm.get('ibge')?.invalid && adressForm.get('ibge')?.touched) {    
+                            <small>Campo obrigatório</small>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <button (click)="cleanAddress()" class="clear-button">Limpar formulário</button>
+        <button (click)="sendForm()">
+        @if(enviando() == true){
+            <img src="loading-icon.svg" alt="Loading Icon">
+        }@else{
+            Enviar
+        }
+        </button>
+        @if(errorMessage() == ""){}
+        @else{
+            <div class="error-msg">
+                <p>{{errorMessage()}}</p>
+            </div>
+        }
+
+    </div>
+</form>
