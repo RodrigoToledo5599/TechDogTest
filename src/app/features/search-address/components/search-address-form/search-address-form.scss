@@ -114,6 +114,13 @@
 
 }
 
+@media (max-width: 768px) {
+    #search-address-form{
+        width: 280px;
+        padding: 12px;
+    }
+}
+
 .skeleton-input {
     height: 40px;
     border-radius: 10px;

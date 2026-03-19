@@ -6,19 +6,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    background-color: #4447fe;
+    position: relative;
+    overflow: hidden;
 
     .blur-ball {
         position: absolute;
-        left: 40%;
-        top: 35%;
-        width: 800px;
-        height: 500px;
-        background: #4d8ef7;
+        left: 0%;
+        top: 0%;
+        width: 500px;
+        height: 250px;
+        background: #ffffff;
         border-radius: 50%;
         filter: blur(180px);
-        opacity: 0.2;
+        opacity: 0.5;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .blur-ball-2 {
+        position: absolute;
+        left: 100%;
+        top: 100%;
+        width: 500px;
+        height: 250px;
+        background: #ffffff;
+        border-radius: 50%;
+        filter: blur(180px);
+        opacity: 0.5;
         transform: translate(-50%, -50%);
         pointer-events: none;
         z-index: 0;
