@@ -129,23 +129,29 @@ export class SearchAddressForm {
   fetchAddress(cep: string) {
     this.loading.set(true);
     this.saService.getAddress(cep).subscribe({
-      next: (data) => {
-        // o tratamento de busca mal sucedida tem que ser esse mesmo por que a resposta de erro é um:  code 200 {"erro":"true"}
+      next: (request) => {
         this.successMessage.set("")
-        if (data.erro == "true") {
+
+        if (request.statusCode == 404) {
           this.errorMessage.set("Nenhum resultado encontrado")
           this._cleanAllFieldsButTheAddress();
           this.loading.set(false);
           this.toastr.error("Não foi possível encontrar o CEP")
         }
-        if (!data.erro) {
+        else if (request.statusCode >= 500){
+          this.errorMessage.set("Erro do Servidor")
+          this._cleanAllFieldsButTheAddress();
+          this.loading.set(false);
+          this.toastr.error("Erro do servidor")
+        }
+        else if (request.statusCode == 200) {
           this.errorMessage.set("")
           this.adressForm.patchValue({
-            rua: data.logradouro,
-            bairro: data.bairro,
-            cidade: data.localidade,
-            estado: data.estado,
-            ibge: data.ibge
+            rua: request.data?.logradouro,
+            bairro: request.data?.bairro,
+            cidade: request.data?.localidade,
+            estado: request.data?.estado,
+            ibge: request.data?.ibge
           });
           this.loading.set(false);
           this.toastr.success("Endereço encontrado")

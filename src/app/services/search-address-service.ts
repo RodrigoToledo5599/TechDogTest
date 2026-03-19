@@ -1,20 +1,23 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { map, Observable } from 'rxjs';
+import { Result } from '../models/Result';
+import { SearchAddressApi } from '../api/search-address-api';
+import { Address } from '../models/Address';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchAddressService {
-  constructor(private http: HttpClient) { }
-
-  getAddress(cep: string): Observable<any> { 
-    var result = this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
-      .pipe(
-        delay(2000)
-      );
-
-    return result;
+  constructor(private serviceApi: SearchAddressApi) { }
+  getAddress(cep: string): Observable<Result<Address>> { 
+    return this.serviceApi.getAddress(cep).pipe(
+      map(res => {
+        if (res.statusCode === 404) {
+          console.warn('CEP não encontrado');
+        }
+        return res;
+      })
+    );
+    
   }
 }
