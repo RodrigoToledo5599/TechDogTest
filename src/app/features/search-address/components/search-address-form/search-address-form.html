@@ -87,6 +87,12 @@
                 <p>{{errorMessage()}}</p>
             </div>
         }
+        @if(successMessage() == ""){}
+        @else{
+            <div class="success-msg">
+                <p>{{successMessage()}}</p>
+            </div>
+        }
 
     </div>
 </form>

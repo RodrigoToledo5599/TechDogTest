@@ -58,6 +58,7 @@ export class SearchAddressForm {
   loading = signal(false);
   enviando = signal(false);
   errorMessage = signal("");
+  successMessage = signal("");
   @Output() cepChange = new EventEmitter<string>();
 
   constructor(
@@ -118,6 +119,8 @@ export class SearchAddressForm {
     this.enviando.set(true);
 
     setTimeout(() => {
+      this.errorMessage.set("")
+      this.successMessage.set("Formulário enviado")
       this.toastr.success("Formulário enviado com sucesso");
       this.enviando.set(false);
     }, 2000);
@@ -128,7 +131,7 @@ export class SearchAddressForm {
     this.saService.getAddress(cep).subscribe({
       next: (data) => {
         // o tratamento de busca mal sucedida tem que ser esse mesmo por que a resposta de erro é um:  code 200 {"erro":"true"}
-        
+        this.successMessage.set("")
         if (data.erro == "true") {
           this.errorMessage.set("Nenhum resultado encontrado")
           this._cleanAllFieldsButTheAddress();
@@ -158,6 +161,8 @@ export class SearchAddressForm {
   }
 
   cleanAddress() {
+    this.errorMessage.set("")
+    this.successMessage.set("")
     this.adressForm.reset()
   }
 

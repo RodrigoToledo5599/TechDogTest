@@ -112,6 +112,19 @@
         gap: 8px;
     }
 
+    .success-msg {
+        font-weight: 500;
+        background-color: #e8f5e9;
+        color: #1b5e20;
+        border-radius: 12px;
+        font-size: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
 }
 
 @media (max-width: 768px) {
